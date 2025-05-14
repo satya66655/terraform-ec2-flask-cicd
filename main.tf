@@ -10,7 +10,7 @@ resource "aws_key_pair" "deployer" {
 resource "aws_instance" "web" {
   ami           = "ami-0953476d60561c955"  # Amazon Linux 2023 (us-east-1)
   instance_type = "t2.micro"
-  key_name      = 886436941748_NV-Mar-25
+  key_name      = "886436941748_NV-Mar-25"
 
   tags = {
     Name = "WebAppServer"
