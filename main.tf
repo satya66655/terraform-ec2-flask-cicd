@@ -15,7 +15,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_security_group" "web_sg" {
-  name        = "flask-app-sg"
+  name        = "flask-app-sg_1"
   description = "Allow SSH and HTTP"
 
   ingress {
