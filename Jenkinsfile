@@ -1,17 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        AWS_DEFAULT_REGION = "us-east-1"
+    parameters {
+        choice(name: 'TF_ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Choose Terraform action to perform')
     }
 
     stages {
-        stage('Clone Terraform Repo') {
-            steps {
-                git url: 'https://github.com/satya66655/terraform-ec2-flask-cicd.git', branch: 'main'
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 sh 'terraform init'
@@ -19,20 +13,29 @@ pipeline {
         }
 
         stage('Terraform Plan') {
+            when {
+                expression { params.TF_ACTION == 'plan' }
+            }
             steps {
                 sh 'terraform plan'
             }
         }
 
         stage('Terraform Apply') {
+            when {
+                expression { params.TF_ACTION == 'apply' }
+            }
             steps {
                 sh 'terraform apply -auto-approve'
             }
         }
 
-        stage('Show Public IP') {
+        stage('Terraform Destroy') {
+            when {
+                expression { params.TF_ACTION == 'destroy' }
+            }
             steps {
-                sh 'terraform output instance_public_ip'
+                sh 'terraform destroy -auto-approve'
             }
         }
     }
