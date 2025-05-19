@@ -7,6 +7,6 @@ variable "existing_sg_id" {
 variable "key_name" {
   description = "Name of the EC2 key pair to use"
   type        = string
-  default     = "886436941748_NV-Mar-25"
+  default     = "886436941748_Mum_May-25"
 }
 
