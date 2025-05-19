@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-0953476d60561c955"  # Amazon Linux 2023 (us-east-1)
+  ami           = "ami-0af9569868786b23a"  # Amazon Linux 2023 (us-east-1)
   instance_type = "t2.micro"
   key_name      = var.key_name
 
