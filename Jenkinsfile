@@ -38,6 +38,11 @@ pipeline {
                 sh 'terraform destroy -auto-approve'
             }
         }
+        stage('Clone') {
+            steps {
+                git url: 'https://github.com/satya66655/terraform-ec2-flask-cicd.git'
+                }
+            }
     }
 }
 
